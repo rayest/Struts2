@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!-- struts 的配置文件-->
+
+<struts>
+
+    <!-- 设置静态方法可以被访问 -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+
+    <package name="main" extends="struts-default">
+
+
+        <!--———————————————————————————————— interceptor ———————————————————————————————————————-->
+        <interceptors>
+            <interceptor name="myInterceptor" class="cn.rayest.interceptor.MyInterceptor"></interceptor>
+            <interceptor name="loginInterceptor"
+                         class="cn.rayest.interceptorLogin.interceptor.LoginInterceptor"></interceptor>
+        </interceptors>
+
+        <!--——————————————————————————— HelloWorldAction ——————————————————————————————————-->
+        <action name="helloWorld" class="cn.rayest.helloWorld.HelloWorldAction">
+            <result name="success">helloWorld.jsp</result>
+        </action>
+
+        <!--—————————————————————————————— helloWorld2 ————————————————————————————————————-->
+        <action name="helloWorld2" class="cn.rayest.helloWorld.HelloWorldAction2">
+            <result name="success">helloWorld2.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— user ————————————————————————————————————————-->
+        <action name="user" class="cn.rayest.user.action.UserAction">
+            <result name="success">/user/success.jsp</result>
+            <result name="error">/user/error.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— user2 ————————————————————————————————————————-->
+        <action name="user2" class="cn.rayest.user.action.UserAction2">
+            <result name="success">success.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+
+        <!--——————————————————————————————— user3 ————————————————————————————————————————-->
+        <action name="user3" class="cn.rayest.user.action.UserAction3">
+            <result name="success">success.jsp</result>
+            <result name="error">error.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— hobby ———————————————————————————————————————-->
+        <action name="hobby" class="cn.rayest.hobby.HobbyAction">
+            <result name="success">hobbySuccess.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— student ———————————————————————————————————————-->
+        <action name="student" class="cn.rayest.student.StudentAction">
+            <result name="success">studentSuccess.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— tongpeifu ————————————————————————————————————————-->
+        <action name="student_*" class="cn.rayest.tongpeifu.StudentAction" method="{1}">
+            <result name="success">/tongpeifu/success.jsp</result>
+        </action>
+
+        <action name="grade_*" class="cn.rayest.tongpeifu.GradeAction" method="{1}">
+            <result name="success">/tongpeifu/success.jsp</result>
+        </action>
+
+        <!-- ———————————————————————————————— lifeCycle ———————————————————————————————————————-->
+        <action name="life" class="cn.rayest.lifeCycle.LifeClassAction">
+            <result name="success">/lifeCycle/life.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— result 配置 ———————————————————————————————————————-->
+        <action name="result" class="cn.rayest.result.ResultAction">
+            <result name="success">/result/success.jsp</result>
+        </action>
+
+        <!--———————————————————————————————— interceptor ———————————————————————————————————————-->
+        <action name="interceptor" class="cn.rayest.interceptor.InterceptorAction">
+            <result name="success">/interceptor/success.jsp</result>
+            <interceptor-ref name="myInterceptor"></interceptor-ref>
+        </action>
+
+        <!--&lt;!&ndash;———————————————————————————————— interceptorLogin ———————————————————————————————————————&ndash;&gt;
+        <action name="interceptorUser" class="cn.rayest.interceptorLogin.action.UsersAction">
+            <result name="success">/interceptorLogin/success.jsp</result>
+            <result name="error">/interceptorLogin/error.jsp</result>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+        <action name="interceptorGirl" class="cn.rayest.interceptorLogin.action.GirlAction">
+            <result name="success">/interceptorLogin/success.jsp</result>
+            <result name="error">/interceptorLogin/error.jsp</result>
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+        </action>-->
+
+        <!--———————————————————————————————— OGNL ———————————————————————————————————————-->
+        <action name="ognl" class="cn.rayest.ognl.OGNLAction">
+            <result name="success">/ognl/success.jsp</result>
+        </action>
+
+        <!--————————————————————————————————— LoginAction ———————————————————————————————————————-->
+        <action name="loginPerson" class="cn.rayest.action.LoginAction" method="show">
+            <result name="success">loginSuccess.jsp</result>
+            <result name="login">login.jsp</result>
+        </action>
+
+        <!--————————————————————————————————— validator ———————————————————————————————————————-->
+        <action name="registerAction" class="cn.rayest.validator.RegisterAction">
+            <result name="input">/register/register.jsp</result>
+            <result name="success">/register/success.jsp</result>
+        </action>
+
+        <!-- ————————————————————————————————— validatorMy ——————————————————————————————————————— -->
+        <action name="validationAction" class="cn.rayest.validatorMy.ValidationAction">
+            <result name="input">/validation/validation.jsp</result>
+            <result name="success">/validation/success.jsp</result>
+        </action>
+
+        <!-- ————————————————————————————————— fileUpLoad ——————————————————————————————————————— -->
+        <action name="fileUpload" class="cn.rayest.fileUpLoad.FileUploadAction">
+            <result name="success">/fileUpLoad/success.jsp</result>
+        </action>
+
+
+        <!--————————————————————————————— BookAction —————————————————————————————————————-->
+        <action name="addBook" class="cn.rayest.book.BookAction" method="add">
+            <result name="success">addSuccess.jsp</result>
+        </action>
+
+        <action name="listBook" class="cn.rayest.book.BookAction" method="list">
+            <result name="list">listBook.jsp</result>
+        </action>
+
+    </package>
+
+    <!-- —————————————————————————————————— multiModule ————————————————————————————————————-->
+    <include file="cheliang.xml"></include>
+    <include file="zichan.xml"></include>
+
+</struts>

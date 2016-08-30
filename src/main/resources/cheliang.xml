@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="cheliang" namespace="/cheliang" extends="struts-default">
+        <action name="cheliang" class="cn.rayest.multiModule.CheLiangAction">
+            <!--此处必须要有 ${pageContext.request.contextPath} -->
+            <result name="success"> ${pageContext.request.contextPath}/success.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
